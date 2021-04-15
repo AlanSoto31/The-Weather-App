@@ -7,7 +7,28 @@
     <title>Document</title>
 </head>
 <body>
-    <button class="test-btn">Hello</button>
+    <form id="form">
+        <div class="mb-3 w-25">
+          <label for="city" class="form-label">City</label>
+          <input type="text" class="form-control" id="city" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Temp</th>
+          <th>Feels like</th>
+          <th>Temp main</th>
+          <th>Temp max</th>
+          <th>Humidity</th>
+        </tr>
+      </thead>
+      <tbody id="bodyTable">
+
+      </tbody>
+    </table>
 
     <script src="main.js"></script>
 </body>

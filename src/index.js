@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //import 'bootstrap';
 import Store from "./storage";
 
-
 const getTemp = async (cityName, degrees) => {
 
     let url = new URL('http://api.openweathermap.org/data/2.5/weather?q=&units=&appid=224b1af71ed4916e22748acda3c2d895');
@@ -14,6 +13,8 @@ const getTemp = async (cityName, degrees) => {
     try {
         let res = await fetch(new_url);
         let res2 = await res.json();
+        res2.main.city = cityName;
+        res2.main.unit = "fahrenheit"
         Store.storeInfo(res2.main);
         printInfo();
     } catch (error) {
@@ -21,27 +22,27 @@ const getTemp = async (cityName, degrees) => {
     }
 }
 
-
-
 const toggleDeg = () => {
-    let myObjStorage = JSON.parse(localStorage.getItem('myObjStorage'));
-    let degrees = document.getElementById("toggleDeg");    
-        if(degrees.textContent == "Fahrenheit"){
+    let myObjStorage = JSON.parse(localStorage.getItem('myObjStorage'));  
+        if(myObjStorage.unit == "fahrenheit"){
             for (const property in myObjStorage) {
-                if(property != "humidity" && property != "pressure"){
+                if(property != "humidity" && property != "pressure" && property != "city"){
                     myObjStorage[property] = Math.round((myObjStorage[property] -32) * (5/9));
-                    degrees.innerText = "Celcius"
                 }
             }
+            //degrees.innerText = "Celcius"
+            myObjStorage.unit = "celcius"
         }else {
             for (const property in myObjStorage) {
-                if(property != "humidity" && property != "pressure"){
+                if(property != "humidity" && property != "pressure" && property != "city"){
                     myObjStorage[property] = Math.round((myObjStorage[property] * (9/5))+32);
-                    degrees.innerText = "Fahrenheit"
                 }
             }
+            myObjStorage.unit = "fahrenheit"
+            //degrees.innerText = "Fahrenheit"
         }
     Store.storeInfo(myObjStorage);
+    printInfo();
 }
 
 const printInfo = () => {
@@ -65,6 +66,8 @@ const takeCity = async (e) => {
     let city = document.getElementById("city");
     getTemp(city.value, "standard");
 }
+
+printInfo();
 
 // EVENTS
 

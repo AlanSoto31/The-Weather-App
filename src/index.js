@@ -10,15 +10,19 @@ const getTemp = async (cityName, degrees) => {
     url.searchParams.set('units', degrees); 
     let new_url = url.toString();
 
+    let errorMessage = document.getElementById("errorMessage");
+    errorMessage.innerHTML = "";
+
     try {
         let res = await fetch(new_url);
+        if(res.status == "404") throw "City not found";
         let res2 = await res.json();
         res2.main.city = cityName;
         res2.main.unit = "fahrenheit"
         Store.storeInfo(res2.main);
-        printInfo();
+        printInfo(); 
     } catch (error) {
-        console.log(error);
+        errorMessage.innerText = error
     }
 }
 

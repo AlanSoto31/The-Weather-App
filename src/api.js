@@ -17,9 +17,8 @@ class API {
             let res = await fetch(new_url);
             if(res.status == "404") throw "City not found";
             let res2 = await res.json();
-            res2.main.city = cityName;
-            res2.main.unit = "fahrenheit"
-            Store.storeInfo(res2.main);
+            res2.unit = "°F"
+            Store.storeInfo(res2);
             UI.printInfo(); 
         } catch (error) {
             errorMessage.innerText = error;

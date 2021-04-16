@@ -5,42 +5,40 @@ class UI {
     static takeCity(e) {
         e.preventDefault();
         let city = document.getElementById("city");
-        API.getTemp(city.value, "standard");
+        API.getTemp(city.value, "imperial");
     }
 
     static printInfo() {
         let myObjStorage = JSON.parse(localStorage.getItem('myObjStorage'));
-        let body = document.getElementById("bodyTable");
-        body.innerHTML = ``;
-        body.innerHTML = `    
-        <tr>
-        <th>${Math.round(myObjStorage.temp)}</th>
-        <td>${Math.round(myObjStorage.feels_like)}</td>
-        <td>${Math.round(myObjStorage.temp_min)}</td>
-        <td>${Math.round(myObjStorage.temp_max)}</td>
-        <td>${Math.round(myObjStorage.humidity)}</td>
-        </tr>
-        `; 
+
+        document.getElementById("cityName").textContent = `${myObjStorage.name}, ${myObjStorage.sys.country}`;
+        document.getElementById("weatherImg").setAttribute("src", `http://openweathermap.org/img/wn/${myObjStorage.weather[0].icon}@4x.png`)
+        document.getElementById("weatherDesc").textContent = `${myObjStorage.weather[0].main}`;
+        document.getElementById("mainTemp").textContent = `${Math.round(myObjStorage.main.temp)} ${myObjStorage.unit}`;
+        document.getElementById("minTemp").textContent = `${Math.round(myObjStorage.main.temp_min)} ${myObjStorage.unit}`;
+        document.getElementById("maxTemp").textContent = `${Math.round(myObjStorage.main.temp_max)} ${myObjStorage.unit}`;
+        document.getElementById("hum").textContent = `${Math.round(myObjStorage.main.humidity)} %`;
     }
 
     static toggleDeg() {
-        let myObjStorage = JSON.parse(localStorage.getItem('myObjStorage'));  
-            if(myObjStorage.unit == "fahrenheit"){
-                for (const property in myObjStorage) {
-                    if(property != "humidity" && property != "pressure" && property != "city"){
-                        myObjStorage[property] = Math.round((myObjStorage[property] -32) * (5/9));
+        let myObjStorage = JSON.parse(localStorage.getItem('myObjStorage')); 
+        let toggleBtn = document.getElementById("toggleDeg"); 
+            if(myObjStorage.unit == "°F"){
+                for (const property in myObjStorage.main) {
+                    if(property != "humidity" && property != "pressure"){
+                        myObjStorage.main[property] = Math.round((myObjStorage.main[property] -32) * (5/9));
                     }
                 }
-                //degrees.innerText = "Celcius"
-                myObjStorage.unit = "celcius"
+                myObjStorage.unit = "°C"
+                //toggleBtn.innerText = "to °F"
             }else {
-                for (const property in myObjStorage) {
-                    if(property != "humidity" && property != "pressure" && property != "city"){
-                        myObjStorage[property] = Math.round((myObjStorage[property] * (9/5))+32);
+                for (const property in myObjStorage.main) {
+                    if(property != "humidity" && property != "pressure"){
+                        myObjStorage.main[property] = Math.round((myObjStorage.main[property] * (9/5))+32);
                     }
                 }
-                myObjStorage.unit = "fahrenheit"
-                //degrees.innerText = "Fahrenheit"
+                myObjStorage.unit = "°F"
+                //toggleBtn.innerText = "to °C"
             }
         Store.storeInfo(myObjStorage);
         UI.printInfo();
@@ -48,3 +46,4 @@ class UI {
 }
 
 export default UI;
+

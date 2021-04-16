@@ -4,36 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d6bf1861cd.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
-<body>
-    <form id="form">
-        <div class="mb-3 w-25">
-          <label for="city" class="form-label">City</label>
-          <input type="text" class="form-control" id="city" required>
+<body class="container">
+
+  <div class="row">
+    <div class="col-lg-3"></div>
+
+    <div class="col-lg-6 app-con d-flex flex-column justify-content-around">
+      <div>
+        <form class="input-group rounded"  id="form">
+          <input type="text" class="form-control " placeholder="Search" aria-label="Search"
+            aria-describedby="search-addon" id="city" required />
+          <button type="submit" class="input-group-text border-0" id="searchBtn">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+        <p id="errorMessage"></p>
+        <h3 id="cityName" class="text-center"></h3>
+      </div>
+      
+      <div class="d-flex mid-con">
+        <div class="d-flex flex-column align-items-end mb-3">
+          <h1 id="mainTemp" class="text-center display-4"></h1>
+          <button id="toggleDeg" class="btn p-1">°C<span class="px-1">/</span>°F</button>
         </div>
-        <button type="submit" class="btn btn-primary">SEARCH</button>
-    </form>
+        <div class="text-center img-cont">
+          <img src="" alt="" id="weatherImg" class="my-0">
+          <p id="weatherDesc" class=""></p>
+        </div>
+      </div>
 
-    <button id="toggleDeg" class="btn btn-primary">Toggle Unit</button>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-center align-items-center p-2"><i class="fas fa-temperature-low weather-icons"></i><span id="minTemp" class="ml-2"></span></div>
+        <div class="d-flex justify-content-center align-items-center p-2"><i class="fas fa-temperature-high weather-icons"></i><span id="maxTemp" class="ml-2"></span></div>
+        <div class="d-flex justify-content-center align-items-center p-2"><i class="fas fa-tint weather-icons"></i><span id="hum" class="ml-2"></span></div>
+      </div>
+    </div>
 
-    <p id="errorMessage"></p>
-    
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Temp</th>
-          <th>Feels like</th>
-          <th>Temp main</th>
-          <th>Temp max</th>
-          <th>Humidity</th>
-        </tr>
-      </thead>
-      <tbody id="bodyTable">
-
-      </tbody>
-    </table>
-
-    <script src="main.js"></script>
+    <div class="col-lg-2"></div>
+  </div>
+  <script src="main.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@ import Store from './storage';
 class API {
   static async getTemp(cityName, degrees) {
     cityName = cityName.toLowerCase();
-    const url = new URL('http://api.openweathermap.org/data/2.5/weather?q=&units=&appid=224b1af71ed4916e22748acda3c2d895');
+    const url = new URL('https://api.openweathermap.org/data/2.5/weather?q=&units=&appid=224b1af71ed4916e22748acda3c2d895');
     url.searchParams.set('q', cityName);
     url.searchParams.set('units', degrees);
     const newUrl = url.toString();

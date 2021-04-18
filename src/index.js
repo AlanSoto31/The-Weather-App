@@ -18,6 +18,3 @@ document.getElementById('form').addEventListener('submit', (e) => {
   const city = document.getElementById('city');
   API.getTemp(city.value, 'imperial');
 });
-
-
-

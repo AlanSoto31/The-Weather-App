@@ -2,7 +2,7 @@ import Store from './storage';
 
 class UI {
   static printHome() {
-    document.getElementById('cityName').innerText = "Welcome to Weather App";
+    document.getElementById('cityName').innerText = 'Welcome to Weather App';
     const homeCon = document.getElementById('infoCon');
     homeCon.innerHTML = `
     <img src="./images/clouds.jpg" alt="" class="home-img mt-3">
@@ -31,7 +31,7 @@ class UI {
         <div class="d-flex justify-content-center align-items-center p-2"><i class="fas fa-tint weather-icons"></i><span id="hum" class="ml-2">${Math.round(myObjStorage.main.humidity)} %</span></div>
     </div>
     `;
-    document.getElementById('toggleDeg').addEventListener('click', UI.toggleDeg)
+    document.getElementById('toggleDeg').addEventListener('click', UI.toggleDeg);
   }
 
   static showE(e) {
@@ -58,7 +58,6 @@ class UI {
     Store.storeInfo(myObjStorage);
     UI.printInfo();
   }
-
 }
 
 export default UI;

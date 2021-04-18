@@ -1,8 +1,7 @@
-
 class Store {
-    static storeInfo(obj) {
-      localStorage.setItem('myObjStorage', JSON.stringify(obj));
-    }
+  static storeInfo(obj) {
+    localStorage.setItem('myObjStorage', JSON.stringify(obj));
   }
+}
 
-  export default Store;
+export default Store;

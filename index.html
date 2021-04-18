@@ -9,10 +9,10 @@
 </head>
 <body class="container">
 
-  <div class="row">
+  <div class="row" id="mainDiv">
     <div class="col-lg-3"></div>
 
-    <div class="col-lg-6 app-con d-flex flex-column justify-content-around">
+    <div class="col-lg-6 app-con d-flex flex-column justify-content-center" id="appDiv">
       <div>
         <form class="input-group rounded"  id="form">
           <input type="text" class="form-control " placeholder="Search" aria-label="Search"
@@ -21,28 +21,10 @@
             <i class="fas fa-search"></i>
           </button>
         </form>
-        <p id="errorMessage"></p>
-        <h3 id="cityName" class="text-center"></h3>
+        <h3 id="cityName" class="text-center mt-4"></h3>
       </div>
-      
-      <div class="d-flex mid-con">
-        <div class="d-flex flex-column align-items-end mb-3">
-          <h1 id="mainTemp" class="text-center display-4"></h1>
-          <button id="toggleDeg" class="btn p-1">°C<span class="px-1">/</span>°F</button>
-        </div>
-        <div class="text-center img-cont">
-          <img src="" alt="" id="weatherImg" class="my-0">
-          <p id="weatherDesc" class=""></p>
-        </div>
-      </div>
-
-      <div class="d-flex justify-content-between align-items-center">
-        <div class="d-flex justify-content-center align-items-center p-2"><i class="fas fa-temperature-low weather-icons"></i><span id="minTemp" class="ml-2"></span></div>
-        <div class="d-flex justify-content-center align-items-center p-2"><i class="fas fa-temperature-high weather-icons"></i><span id="maxTemp" class="ml-2"></span></div>
-        <div class="d-flex justify-content-center align-items-center p-2"><i class="fas fa-tint weather-icons"></i><span id="hum" class="ml-2"></span></div>
-      </div>
+      <div id="errorCon"></div>
     </div>
-
     <div class="col-lg-2"></div>
   </div>
   <script src="main.js"></script>

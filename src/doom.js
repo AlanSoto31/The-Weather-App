@@ -1,11 +1,19 @@
 import Store from './storage';
 
 class UI {
+  static printHome() {
+    document.getElementById('cityName').innerText = "Welcome to Weather App";
+    const homeCon = document.getElementById('infoCon');
+    homeCon.innerHTML = `
+    <img src="./images/clouds.jpg" alt="" class="home-img mt-3">
+    `;
+  }
+
   static printInfo() {
     const myObjStorage = JSON.parse(localStorage.getItem('myObjStorage'));
     document.getElementById('cityName').textContent = `${myObjStorage.name}, ${myObjStorage.sys.country}`;
-    const xxx = document.getElementById('errorCon');
-    xxx.innerHTML = `
+    const infoCon = document.getElementById('infoCon');
+    infoCon.innerHTML = `
     <div class="d-flex mid-con" id="tempCon">
       <div class="d-flex flex-column align-items-end mb-3">
         <h1 id="mainTemp" class="text-center display-4">${Math.round(myObjStorage.main.temp)} ${myObjStorage.unit}</h1>
@@ -26,6 +34,14 @@ class UI {
     document.getElementById('toggleDeg').addEventListener('click', UI.toggleDeg)
   }
 
+  static showE(e) {
+    document.getElementById('cityName').innerText = `${e}`;
+    const errorCon = document.getElementById('infoCon');
+    errorCon.innerHTML = `
+    <img src=https://media.giphy.com/media/wSSooF0fJM97W/giphy.gif alt="" class="error-img mt-3">
+    `;
+  }
+
   static toggleDeg() {
     const myObjStorage = JSON.parse(localStorage.getItem('myObjStorage'));
     if (myObjStorage.unit === '°F') {
@@ -43,13 +59,6 @@ class UI {
     UI.printInfo();
   }
 
-  static showE(e) {
-    document.getElementById('cityName').innerText = `${e}`;
-    const errorCon = document.getElementById('errorCon');
-    errorCon.innerHTML = `
-    <img src=https://media.giphy.com/media/wSSooF0fJM97W/giphy.gif alt="" class="img-error text-center">
-    `;
-  }
 }
 
 export default UI;
